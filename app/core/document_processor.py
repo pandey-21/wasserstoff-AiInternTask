@@ -4,14 +4,7 @@ from PIL import Image
 from typing import List
 from .utils import DocumentSnippet, generate_doc_id
 
-if platform.system() == "Windows":
-    # If running on Windows, set the path to the typical installation directory.
-    # Users might need to adjust this path based on their local setup.
-    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-else:
-    # If running on Linux (like on Streamlit Cloud), the tesseract executable
-    # is installed via `packages.txt` and is located in the standard /usr/bin/ directory.
-    pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 def _chunk_text_into_snippets(doc_id: str, page_num: int, text: str) -> List[DocumentSnippet]:
     """
