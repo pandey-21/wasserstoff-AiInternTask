@@ -3,9 +3,15 @@ import pytesseract
 from PIL import Image
 from typing import List
 from .utils import DocumentSnippet, generate_doc_id
+import platform
 
-
-
+if platform.system() == "Windows":
+    # This path is for local Windows development
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+else:
+    # This path is for the Linux environment on Streamlit Cloud
+    pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
+    
 def _chunk_text_into_snippets(doc_id: str, page_num: int, text: str) -> List[DocumentSnippet]:
     """
     A helper function to split a large block of text into paragraph-based snippets.
