@@ -4,7 +4,7 @@ from PIL import Image
 from typing import List
 from .utils import DocumentSnippet, generate_doc_id
 
-#pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+
 
 def _chunk_text_into_snippets(doc_id: str, page_num: int, text: str) -> List[DocumentSnippet]:
     """
