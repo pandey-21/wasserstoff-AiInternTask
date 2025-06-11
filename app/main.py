@@ -1,3 +1,8 @@
+# This is a special fix to address the issue of Streamlit Cloud's servers having an
+# outdated version of the SQLite3 library. ChromaDB requires a newer version.
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 import pandas as pd
 from core.document_processor import process_uploaded_file
