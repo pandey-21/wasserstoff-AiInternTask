@@ -1,7 +1,9 @@
 # Technical Report: Document Research & Theme Identification Chatbot
 
 **Author:** Raj Pandey
+
 **Project:** Wasserstoff AI Software Intern Qualification Task
+
 **Date:** 12 June 2025
 
 **Live Application:** [https://your-final-app-url.streamlit.app/](https://your-final-app-url.streamlit.app/)
