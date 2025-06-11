@@ -1,26 +1,10 @@
-# Web framework for the user interface
 streamlit
-
-# Data manipulation and display
 pandas
-
-# For loading environment variables (e.g., API keys) from a .env file
 python-dotenv
-
-# The client library for the Groq LLM API
 groq
-
-# Vector database for storing and searching document embeddings
 chromadb
-
-# For parsing and manipulating PDF documents
 PyMuPDF
-
-# The OCR engine for extracting text from images
 pytesseract
-
-# Image processing library, used by OCR and document processing
 Pillow
-
-# For data validation and defining structured data models
 pydantic
+protobuf==3.20.3
