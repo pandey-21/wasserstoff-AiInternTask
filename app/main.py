@@ -9,9 +9,12 @@ from core.document_processor import process_uploaded_file
 from core.retrieval import VectorStore
 from core.generation import get_answer_from_document, synthesize_themes 
 from core.utils import generate_doc_id
+from streamlit.runtime.scriptrunner import get_script_run_ctx
 
 # --- Page and Session State Setup ---
 # Configure the Streamlit page for a clean, wide layout.
+ctx = get_script_run_ctx()
+session_id = ctx.session_id
 st.set_page_config(
     page_title="Wasserstoff AI Intern Task",
     page_icon="🤖",
@@ -21,7 +24,7 @@ st.set_page_config(
 # Initialize session state variables to persist data across user interactions.
 # This robust pattern ensures the app doesn't crash on reruns.
 if 'vector_store' not in st.session_state:
-    st.session_state.vector_store = VectorStore(collection_name="wasserstoff_task")
+    st.session_state.vector_store = VectorStore(collection_name=f"wasserstoff_task_{session_id}")
 
 # This is the key to preventing duplicate document processing.
 if 'processed_doc_ids' not in st.session_state:
