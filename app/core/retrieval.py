@@ -1,6 +1,6 @@
 import chromadb
 from typing import List, Dict, Any
-from .utils import DocumentSnippet
+from utils import DocumentSnippet
 
 class VectorStore:
     def __init__(self, collection_name: str = "document_research"):
