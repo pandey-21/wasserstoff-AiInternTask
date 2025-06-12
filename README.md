@@ -18,7 +18,7 @@ The application has been deployed and is publicly accessible.
 
 A brief video walkthrough demonstrating the core features and workflow of the application is available here:
 
-**[Link to Your Demo Video on Loom]**https://www.loom.com/share/912eb39f463c4d0893e3aa8acbf71bd9
+**[Link to Your Demo Video on Loom]**https://www.loom.com/share/c52dfbb6a8a34ab1ad11945e7d39fa31
 
 ---
 
