@@ -51,7 +51,7 @@ class VectorStore:
         doc_ids = {meta['doc_id'] for meta in all_metadatas}
         return list(doc_ids)
     
-     def clear_database(self):
+    def clear_database(self):
         """Deletes the collection specific to this session."""
         try:
             self.client.delete_collection(name=self.collection_name)
