@@ -1,13 +1,11 @@
 import chromadb
 from typing import List, Dict, Any
 from .utils import DocumentSnippet
-from chromadb.utils import embedding_functions
 
 class VectorStore:
     def __init__(self, collection_name: str = "document_research"):
-        embedder = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")
         self.client = chromadb.Client() # In-memory client
-        self.collection = self.client.get_or_create_collection(name=collection_name, embedding_function = embedder)
+        self.collection = self.client.get_or_create_collection(name=collection_name)
 
     def add_documents(self, snippets: List[DocumentSnippet]):
         """Adds document snippets to the vector store."""
@@ -53,8 +51,10 @@ class VectorStore:
         doc_ids = {meta['doc_id'] for meta in all_metadatas}
         return list(doc_ids)
     
-    def clear_database(self):
-        """Deletes the collection, clearing all data."""
-        self.client.delete_collection(name=self.collection.name)
-        self.collection = self.client.get_or_create_collection(name=self.collection.name)
-        print("Vector database cleared.")
+     def clear_database(self):
+        """Deletes the collection specific to this session."""
+        try:
+            self.client.delete_collection(name=self.collection_name)
+            print(f"Collection '{self.collection_name}' cleared.")
+        except Exception as e:
+            print(f"Could not clear collection '{self.collection_name}': {e}")
