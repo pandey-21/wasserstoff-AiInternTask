@@ -90,9 +90,13 @@ def synthesize_themes(query: str, answers: List[DocumentAnswer]) -> List[Theme]:
 # This prompt provides a "one-shot" example of the desired JSON structure,
 # which is a very effective way to guide the LLM.
     prompt = f"""
-    You are a research analyst. Identify 2-4 distinct themes from the answers provided for the query: '{query}'.
-    Respond with a single JSON object: {{"themes": [{{"theme_title": "string", "summary": "string", "supporting_docs": ["doc_id_1", "doc_id_2"]}}]}}.
-    Ensure every theme object has all three keys.
+    You are a research analyst. Your task is to identify 2-4 distinct themes from the answers provided for the query: '{query}'.
+    The answers are provided in <answer> tags, each with a 'doc_id' attribute.
+
+    Respond with a single, syntactically perfect JSON object.
+    The object must follow this schema: {{"themes": [{{"theme_title": "string", "summary": "string", "supporting_docs": ["doc_id_1"]}}]}}.
+
+    IMPORTANT RULE: The generated JSON must be perfectly valid. Pay close attention to syntax. DO NOT use trailing commas after the last element in a list or object.
 
     ANSWERS:
     ---
