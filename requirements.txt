@@ -10,3 +10,4 @@ pydantic
 protobuf==3.20.3
 pysqlite3-binary
 sentence-transformers
+langchain
