@@ -5,6 +5,7 @@ from .utils import DocumentSnippet
 class VectorStore:
     def __init__(self, collection_name: str = "document_research"):
         self.client = chromadb.Client() # In-memory client
+        # To persist to disk, use: self.client = chromadb.PersistentClient(path="/path/to/db")
         self.collection = self.client.get_or_create_collection(name=collection_name)
 
     def add_documents(self, snippets: List[DocumentSnippet]):
@@ -52,9 +53,7 @@ class VectorStore:
         return list(doc_ids)
     
     def clear_database(self):
-        """Deletes the collection specific to this session."""
-        try:
-            self.client.delete_collection(name=self.collection_name)
-            print(f"Collection '{self.collection_name}' cleared.")
-        except Exception as e:
-            print(f"Could not clear collection '{self.collection_name}': {e}")
+        """Deletes the collection, clearing all data."""
+        self.client.delete_collection(name=self.collection.name)
+        self.collection = self.client.get_or_create_collection(name=self.collection.name)
+        print("Vector database cleared.")
