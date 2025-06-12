@@ -1,11 +1,13 @@
 import chromadb
 from typing import List, Dict, Any
 from .utils import DocumentSnippet
+from langchain.embeddings import HuggingFaceEmbeddings
 
 class VectorStore:
     def __init__(self, collection_name: str = "document_research"):
+        embedder = HuggingFaceEmbeddings(model_name = "all-MiniLM-L6-v2")
         self.client = chromadb.Client() # In-memory client
-        self.collection = self.client.get_or_create_collection(name=collection_name)
+        self.collection = self.client.get_or_create_collection(name=collection_name, embedding_function = embedder)
 
     def add_documents(self, snippets: List[DocumentSnippet]):
         """Adds document snippets to the vector store."""
